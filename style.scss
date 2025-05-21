@@ -1,6 +1,13 @@
-@charset "UTF-8";
 /* generales */
-.catalogo-titulo {
+$color-fondo: #CDB4DB;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%titulo-centro {
   text-align: center;
   margin: 0 auto;
   display: block;
@@ -32,7 +39,7 @@ main {
 }
 
 .header-bg {
-  background-color: #CDB4DB;
+  background-color: $color-fondo;
 }
 
 .nav {
@@ -40,9 +47,12 @@ main {
   justify-content: center;
   margin: 0%;
   padding: 0;
-}
-.nav ul li {
-  margin-right: 3rem;
+
+  ul {
+    li {
+      margin-right: 3rem;
+    }
+  }
 }
 
 .nav-item {
@@ -82,19 +92,22 @@ main {
   margin-top: 2rem;
   color: #212529;
   text-decoration: overline;
-}
-.main-texto h1, .main-texto h3 {
-  background-color: #CDB4DB;
-  border-radius: 10rem;
-}
-.main-texto h1 {
-  font-family: "Dancing Script", cursive;
-  font-size: 6rem;
-  margin: 0 auto;
-}
-.main-texto h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
+
+  h1, h3 {
+    background-color: $color-fondo;
+    border-radius: 10rem;
+  }
+
+  h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: 6rem;
+    margin: 0 auto;
+  }
+
+  h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+  }
 }
 
 /* main nosotros */
@@ -107,9 +120,10 @@ section div h3 {
 .nosotros {
   background-color: #ffe5ec;
   font-size: 1.7rem;
-}
-.nosotros p {
-  margin-bottom: 0;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 /* especialidades */
@@ -117,19 +131,21 @@ section div h3 {
   display: flex;
   gap: 8rem;
   justify-content: center;
-  background-color: #CDB4DB;
+  background-color: $color-fondo;
   padding: 3rem;
   margin-bottom: 0;
   text-align: center;
   font-family: "Playfair Display", serif;
   font-size: 3rem;
-}
-.especialidades div img {
-  width: 30rem;
+
+  div img {
+    width: 30rem;
+  }
 }
 
 /* productos */
 .catalogo-titulo {
+  @extend %titulo-centro;
   background-color: #ffcdb2;
   margin-bottom: 0;
   padding: 1rem;
@@ -137,33 +153,36 @@ section div h3 {
   font-size: 4rem;
 }
 
-.catalogo section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  text-align: center;
-  background-color: #ffcdb2;
-  padding: 2rem;
-}
-.catalogo section div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 1rem;
-  padding: 1rem;
-  background-color: #ffcdb2;
-}
-.catalogo section img {
-  width: 100%;
-  max-width: 30rem;
-  height: 20rem;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-.catalogo h3 {
-  font-size: 2rem;
-  margin-top: 1rem;
+.catalogo {
+  section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+    background-color: #ffcdb2;
+    padding: 2rem;
+
+    div {
+      @include flex-center;
+      flex-direction: column;
+      border-radius: 1rem;
+      padding: 1rem;
+      background-color: #ffcdb2;
+    }
+
+    img {
+      width: 100%;
+      max-width: 30rem;
+      height: 20rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
 }
 
 /* sección comprar */
@@ -175,19 +194,18 @@ section div h3 {
   font-size: 2rem;
   margin-bottom: 0;
   min-height: calc(100vh - 15rem);
-}
-.form legend {
-  text-align: center;
-  font-weight: 500;
-  font-size: 5rem;
-  font-family: "Dancing Script", cursive;
+
+  legend {
+    text-align: center;
+    font-weight: 500;
+    font-size: 5rem;
+    font-family: "Dancing Script", cursive;
+  }
 }
 
 /* footer */
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   background-color: #ffe5ec;
   padding: 1rem 0;
   text-align: center;
@@ -195,68 +213,85 @@ section div h3 {
 }
 
 /* media queries */
+
 /* Media query (Tablet) */
 @media (max-width: 1024px) {
   .nav-item {
     text-align: center;
   }
+
   .navbar-nav {
     gap: 1rem;
     width: 50%;
     margin-right: 15%;
     margin-left: 25%;
   }
+
   .especialidades {
     gap: 4rem;
   }
-  .catalogo section {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  .catalogo img {
-    max-width: 25rem;
-    height: 18rem;
+
+  .catalogo {
+    section {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    img {
+      max-width: 25rem;
+      height: 18rem;
+    }
   }
 }
+
 /* Media query (Celular) */
 @media (max-width: 768px) {
+  
   /* nav */
   .nav-item {
     text-align: center;
   }
+
   .navbar-nav {
     gap: 1rem;
     width: 50%;
     margin-right: 15%;
     margin-left: 25%;
   }
+
   /* header */
-  .main-texto h1 {
-    font-family: "Dancing Script", cursive;
-    font-size: 2rem;
-    background-color: #CDB4DB;
-    border-radius: 5rem;
+  .main-texto {
+    h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: 2rem;
+      background-color: $color-fondo;
+      border-radius: 5rem;
+    }
+
+    h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      background-color: $color-fondo;
+      border-radius: 5rem;
+    }
   }
-  .main-texto h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.2rem;
-    background-color: #CDB4DB;
-    border-radius: 5rem;
-  }
+
   /* especialidades */
   .especialidades {
     gap: 2rem;
     flex-wrap: wrap;
   }
+
   /* catalogo */
-  .catalogo section {
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
-  }
-  .catalogo img {
-    width: 90%;
-    height: auto;
+  .catalogo {
+    section {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+
+    img {
+      width: 90%;
+      height: auto;
+    }
   }
 }
-
-/*# sourceMappingURL=style.css.map */
